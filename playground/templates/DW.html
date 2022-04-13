@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+	
+<style>
+table, tr, td{
+ border-color:black
+}
+table{
+ border-spacing: inherit;
+}	
+
+body {
+  background-color: white;
+}
+td {
+  text-align: center;
+  /* center checkbox horizontally */
+  vertical-align: middle;
+  /* center checkbox vertically */
+	color: white;
+	background-color: gainsboro;
+}
+td label { 
+    display: block;
+    text-align: center;
+    }
+	
+td:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+	
+h1 {
+  color: black;
+  text-align: center;
+}
+
+</style>
+
+<body data-new-gr-c-s-check-loaded="8.896.0" data-gr-ext-installed="">
+
+<h1>Nursery Fees</h1>
+
+<h2>Sessions per Week</h2>
+	
+<title>DreamWeaver</title>
+	
+<script>
+
+function myFunction(id) {
+  var checkBox = document.getElementById(id);
+  var cell = checkBox.parentElement.parentElement;
+  if (checkBox.checked == true){
+    cell.style.backgroundColor = "green";
+  } else {
+	   cell.style.backgroundColor = "gainsboro";
+  }
+}
+	
+	
+function add(){
+  var numOne, numTwo,numThree, numFour, sum, sum2;
+  numOne = parseInt(document.getElementById("first").value);
+  numTwo = parseInt(document.getElementById("second").value);
+  numThree = parseInt(document.getElementById("third").value);
+  if(document.getElementById("radio30").checked) {
+   numFour = (390/4);
+  }
+  else{
+    if(document.getElementById("radio15").checked) {
+      numFour = (195/4);
+  }
+    else{
+      numFour = 0;
+    }
+  }
+  sum = Math.max(((numOne*30) + (numTwo*30) + (numThree*55) - numFour),0);
+  sum2 = sum*4;
+  document.getElementById("answer1").value = sum;
+  document.getElementById("answer2").value = sum2;
+}
+
+function slots(){
+  var mornings,lunches,afternoons,fulldays;
+	mornings=0;
+	lunches=0;
+	afternoons=0;
+	fulldays=0;
+	
+	if (document.getElementById("Mon"+"1").checked == true){
+		mornings=mornings+1;}
+	if (document.getElementById("Mon"+"2").checked == true){
+		lunches=lunches+1;}
+	if (document.getElementById("Mon"+"3").checked == true){
+		afternoons=afternoons+1;}
+	if ((document.getElementById("Mon"+"1").checked == true) && (document.getElementById("Mon"+"2").checked == true) && (document.getElementById("Mon"+"3").checked == true)){
+		mornings=mornings-1;
+		lunches=lunches-1;
+		afternoons=afternoons-1;
+		fulldays=fulldays+1;	}
+	
+	if (document.getElementById("Tue"+"1").checked == true){
+		mornings=mornings+1;}
+	if (document.getElementById("Tue"+"2").checked == true){
+		lunches=lunches+1;}
+	if (document.getElementById("Tue"+"3").checked == true){
+		afternoons=afternoons+1;}
+	if ((document.getElementById("Tue"+"1").checked == true) && (document.getElementById("Tue"+"2").checked == true) && (document.getElementById("Tue"+"3").checked == true)){
+		mornings=mornings-1;
+		lunches=lunches-1;
+		afternoons=afternoons-1;
+		fulldays=fulldays+1;	}
+	
+	
+	
+	
+	
+	
+	
+		
+	document.getElementById("first").value = mornings;
+	document.getElementById("lunch").value = lunches;
+	document.getElementById("second").value = afternoons;
+	document.getElementById("third").value = fulldays;
+		
+}
+</script>
+
+<table width="500" border="1">
+
+  <tbody>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col" width="225">Morning</th>
+      <th scope="col" width="50" >Lunch</th>
+      <th scope="col" width="225">Afternoon</th>
+    </tr>
+    <tr>
+      <th scope="row">Monday</th>
+      <td><label><input id="Mon1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td><label><input id="Mon2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td><label><input id="Mon3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+    </tr>
+    <tr>
+      <th scope="row">Tuesday</th>
+      <td><label><input id="Tue1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td><label><input id="Tue2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td><label><input id="Tue3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+    </tr>
+    <tr>
+      <th scope="row">Wednesday</th>
+      <td><label><input id="Wed1" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td><label><input id="Wed2" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td><label><input id="Wed3" onclick="myFunction(this.id)" type="checkbox"></label></td>
+    </tr>
+    <tr>
+      <th scope="row">Thursday</th>
+      <td><label><input id="Thu1" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td><label><input id="Thu2" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td><label><input id="Thu3" onclick="myFunction(this.id)" type="checkbox"></label></td>
+    </tr>
+    <tr>
+      <th scope="row">Friday</th>
+      <td><label><input id="Fri1" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td><label><input id="Fri2" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td><label><input id="Fri3" onclick="myFunction(this.id)" type="checkbox"></label></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Single Mornings (£30)  : <input id="first" type="number" min="0" max="5" value="0" oninput="add()"> </p>
+<p>Lunches (£5)  : <input id="lunch" type="number" min="0" max="5" value="0" oninput="add()"> </p>
+<p>Single Afternoons (£30): <input id="second" type="number" min="0" max="5" value="0" oninput="add()"></p>
+<br>
+<p>Full Days (£55): <input id="third" type="number" min="0" max="5" value="0" oninput="add()"> </p>
+<br>
+
+<p>
+  No Funding: <input id="radio0" type="radio" name="fundings" checked="checked" onchange="add()">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  15 Hours Funding: <input id="radio15" type="radio" name="fundings" onchange="add()">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  30 Hours Funding: <input id="radio30" type="radio" name="fundings" onchange="add()">
+</p>
+<h2>Costs</h2>
+
+
+
+<p>Weekly = <input id="answer1" value="0"></p>
+<p>Monthly = <input id="answer2" value="0"></p>
+	
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
