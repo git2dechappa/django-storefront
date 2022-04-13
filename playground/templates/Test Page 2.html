@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head><body data-new-gr-c-s-check-loaded="8.896.0" data-gr-ext-installed=""><h1>Nursery Fees</h1>
+<h2>Sessions per Week</h2>
+<title>Test Page 2</title>
+<script>
+function add()
+{
+  var numOne, numTwo,numThree, numFour, sum, sum2;
+  numOne = parseInt(document.getElementById("first").value);
+  numTwo = parseInt(document.getElementById("second").value);
+  numThree = parseInt(document.getElementById("third").value);
+
+  if(document.getElementById("radio30").checked) {
+   numFour = (390/4);
+  }
+  else{
+    if(document.getElementById("radio15").checked) {
+      numFour = (195/4);
+  }
+    else{
+      numFour = 0;
+    }
+  }
+
+  sum = Math.max(((numOne*30) + (numTwo*30) + (numThree*55) - numFour),0);
+  sum2 = sum*4;
+
+
+  document.getElementById("answer1").value = sum;
+  document.getElementById("answer2").value = sum2;
+}
+</script>
+
+
+
+<p>Single Mornings (£30)  : <input id="first" type="number" min="0" max="5" value="0" oninput="add()"> </p>
+<p>Single Afternoons (£30): <input id="second" type="number" min="0" max="5" value="0" oninput="add()"></p>
+<p>Full Days (£55): <input id="third" type="number" min="0" max="5" value="0" oninput="add()"> </p>
+<br>
+<p>
+  No Funding: <input id="radio0" type="radio" name="fundings" checked="checked" onchange="add()">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  15 Hours Funding: <input id="radio15" type="radio" name="fundings" onchange="add()">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  30 Hours Funding: <input id="radio30" type="radio" name="fundings" onchange="add()">
+</p>
+<h2>Costs</h2>
+
+
+
+<p>Weekly = <input id="answer1" value="0"></p>
+<p>Monthly = <input id="answer2" value="0"></p>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
