@@ -19,3 +19,9 @@ def show_fees(request):
     y=2
 #    return HttpResponse("Hello World")
     return render(request, "Test Page 2.html",{"name": "Oli"})
+
+def show_fees2(request):
+    x=calculate()
+    y=2
+#    return HttpResponse("Hello World")
+    return render(request, "DW.html",{"name": "Oli"})

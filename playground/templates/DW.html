@@ -1,132 +1,187 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-</head>
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"></head>
 	
 <style>
-table, tr, td{
- border-color:black
-}
-table{
- border-spacing: inherit;
-}	
+	
+	h1, #spw { color: black; text-align: center;}
+	body { background-color: ghostwhite;}
+	
+	table{border-collapse: collapse; border-color:black; border-width: medium; background-color:lightgray}
+	tr{ border-color:black}
+	td{ border-color:black}
+	
+	table{ border-spacing: inherit;}	
+	
+	td label { display: block; text-align: center;}
+	
+	td {text-align: center; vertical-align: middle;color: white;background-color:gainsboro; transition-duration: 0.15s;}
+ 
 
-body {
-  background-color: white;
-}
-td {
-  text-align: center;
-  /* center checkbox horizontally */
-  vertical-align: middle;
-  /* center checkbox vertically */
-	color: white;
-	background-color: gainsboro;
-}
-td label { 
-    display: block;
-    text-align: center;
-    }
+	.uclkd{background-color: white; color: white;}
 	
-td:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+	.uclkd:hover{
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		background-color: mediumseagreen; color: white;}
 	
-h1 {
-  color: black;
-  text-align: center;
-}
+	.clkd{background-color: seagreen; color: white;}
+	
+	td:active{background-color: darkgreen; color: white;}
+	
+	input[type="checkbox"]{opacity: 0}
+	
+	.sesh{display: none}
 
 </style>
+	
+	
 
 <body data-new-gr-c-s-check-loaded="8.896.0" data-gr-ext-installed="">
-
 <h1>Nursery Fees</h1>
+<h2 id="spw">Sessions per Week</h2>
+<h3>Hello {{ name }}</h3>
+<h3>Are you entitled to Early Years Funding?</h3>
+<p>
+	No Funding: <input id="radio0" type="radio" name="fundings" checked="checked" onchange="add()">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	15 Hours Funding: <input id="radio15" type="radio" name="fundings" onchange="add()">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	30 Hours Funding: <input id="radio30" type="radio" name="fundings" onchange="add()">
+  </p>
 
-<h2>Sessions per Week</h2>
-	
+<h3>Which sessions will your child attend each week?</h3>
 <title>DreamWeaver</title>
 	
 <script>
 
-function myFunction(id) {
-  var checkBox = document.getElementById(id);
-  var cell = checkBox.parentElement.parentElement;
-  if (checkBox.checked == true){
-    cell.style.backgroundColor = "green";
-  } else {
-	   cell.style.backgroundColor = "gainsboro";
-  }
-}
-	
-	
-function add(){
-  var numOne, numTwo,numThree, numFour, sum, sum2;
-  numOne = parseInt(document.getElementById("first").value);
-  numTwo = parseInt(document.getElementById("second").value);
-  numThree = parseInt(document.getElementById("third").value);
-  if(document.getElementById("radio30").checked) {
-   numFour = (390/4);
-  }
-  else{
-    if(document.getElementById("radio15").checked) {
-      numFour = (195/4);
-  }
-    else{
-      numFour = 0;
-    }
-  }
-  sum = Math.max(((numOne*30) + (numTwo*30) + (numThree*55) - numFour),0);
-  sum2 = sum*4;
-  document.getElementById("answer1").value = sum;
-  document.getElementById("answer2").value = sum2;
-}
+	function myFunction(id) {
+	  var checkBox = document.getElementById(id);
+	  var cell = checkBox.parentElement.parentElement;
 
-function slots(){
-  var mornings,lunches,afternoons,fulldays;
-	mornings=0;
-	lunches=0;
-	afternoons=0;
-	fulldays=0;
-	
-	if (document.getElementById("Mon"+"1").checked == true){
-		mornings=mornings+1;}
-	if (document.getElementById("Mon"+"2").checked == true){
-		lunches=lunches+1;}
-	if (document.getElementById("Mon"+"3").checked == true){
-		afternoons=afternoons+1;}
-	if ((document.getElementById("Mon"+"1").checked == true) && (document.getElementById("Mon"+"2").checked == true) && (document.getElementById("Mon"+"3").checked == true)){
-		mornings=mornings-1;
-		lunches=lunches-1;
-		afternoons=afternoons-1;
-		fulldays=fulldays+1;	}
-	
-	if (document.getElementById("Tue"+"1").checked == true){
-		mornings=mornings+1;}
-	if (document.getElementById("Tue"+"2").checked == true){
-		lunches=lunches+1;}
-	if (document.getElementById("Tue"+"3").checked == true){
-		afternoons=afternoons+1;}
-	if ((document.getElementById("Tue"+"1").checked == true) && (document.getElementById("Tue"+"2").checked == true) && (document.getElementById("Tue"+"3").checked == true)){
-		mornings=mornings-1;
-		lunches=lunches-1;
-		afternoons=afternoons-1;
-		fulldays=fulldays+1;	}
-	
-	
-	
-	
-	
-	
-	
+		if (checkBox.checked == true)
+			{cell.classList.add("clkd");
+			 cell.classList.remove("uclkd");}
+		else
+			{cell.classList.add("uclkd");
+			 cell.classList.remove("clkd");}
+	}
+
+	function add(){
+	  var numOne, numTwo,numThree, numFour,numFive, sum, sum2;
+	  numOne = parseInt(document.getElementById("first").value);
+	  numTwo = parseInt(document.getElementById("second").value);
+	  numThree = parseInt(document.getElementById("third").value);
+	 numFive = parseInt(document.getElementById("lunch").value);
+	  if(document.getElementById("radio30").checked) {
+	   numFour = (390/4);
+	  }
+	  else{
+		if(document.getElementById("radio15").checked) {
+		  numFour = (195/4);
+	  }
+		else{
+		  numFour = 0;
+		}
+	  }
+	  sum = Math.max(((numOne*30) +(numFive*5)+ (numTwo*30) + (numThree*55) - numFour),0);
+	  sum2 = sum*4;
+	  document.getElementById("answer1").value = sum;
+	  document.getElementById("answer2").value = sum2;
+	}
+
+	function slots(){
+	  var mornings,lunches,afternoons,fulldays;
+		mornings=0;
+		lunches=0;
+		afternoons=0;
+		fulldays=0;
+
+		if (document.getElementById("Mon"+"1").checked == true){
+			mornings=mornings+1;}
+		if (document.getElementById("Mon"+"2").checked == true){
+			lunches=lunches+1;}
+		if (document.getElementById("Mon"+"3").checked == true){
+			afternoons=afternoons+1;}
+		if ((document.getElementById("Mon"+"1").checked == true) && (document.getElementById("Mon"+"2").checked == true) && (document.getElementById("Mon"+"3").checked == true)){
+			mornings=mornings-1;
+			lunches=lunches-1;
+			afternoons=afternoons-1;
+			fulldays=fulldays+1;	}
+
+		if (document.getElementById("Tue"+"1").checked == true){
+			mornings=mornings+1;}
+		if (document.getElementById("Tue"+"2").checked == true){
+			lunches=lunches+1;}
+		if (document.getElementById("Tue"+"3").checked == true){
+			afternoons=afternoons+1;}
+		if ((document.getElementById("Tue"+"1").checked == true) && (document.getElementById("Tue"+"2").checked == true) && (document.getElementById("Tue"+"3").checked == true)){
+			mornings=mornings-1;
+			lunches=lunches-1;
+			afternoons=afternoons-1;
+			fulldays=fulldays+1;	}
+
+		if (document.getElementById("Wed"+"1").checked == true){
+			mornings=mornings+1;}
+		if (document.getElementById("Wed"+"2").checked == true){
+			lunches=lunches+1;}
+		if (document.getElementById("Wed"+"3").checked == true){
+			afternoons=afternoons+1;}
+		if ((document.getElementById("Wed"+"1").checked == true) && (document.getElementById("Wed"+"2").checked == true) && (document.getElementById("Wed"+"3").checked == true)){
+			mornings=mornings-1;
+			lunches=lunches-1;
+			afternoons=afternoons-1;
+			fulldays=fulldays+1;	}
+
+		if (document.getElementById("Thu"+"1").checked == true){
+			mornings=mornings+1;}
+		if (document.getElementById("Thu"+"2").checked == true){
+			lunches=lunches+1;}
+		if (document.getElementById("Thu"+"3").checked == true){
+			afternoons=afternoons+1;}
+		if ((document.getElementById("Thu"+"1").checked == true) && (document.getElementById("Thu"+"2").checked == true) && (document.getElementById("Thu"+"3").checked == true)){
+			mornings=mornings-1;
+			lunches=lunches-1;
+			afternoons=afternoons-1;
+			fulldays=fulldays+1;	}	
+
+		if (document.getElementById("Fri"+"1").checked == true){
+			mornings=mornings+1;}
+		if (document.getElementById("Fri"+"2").checked == true){
+			lunches=lunches+1;}
+		if (document.getElementById("Fri"+"3").checked == true){
+			afternoons=afternoons+1;}
+		if ((document.getElementById("Fri"+"1").checked == true) && (document.getElementById("Fri"+"2").checked == true) && (document.getElementById("Fri"+"3").checked == true)){
+			mornings=mornings-1;
+			lunches=lunches-1;
+			afternoons=afternoons-1;
+			fulldays=fulldays+1;	}	
+
+
+		document.getElementById("first").value = mornings;
+		document.getElementById("lunch").value = lunches;
+		document.getElementById("second").value = afternoons;
+		document.getElementById("third").value = fulldays;
 		
-	document.getElementById("first").value = mornings;
-	document.getElementById("lunch").value = lunches;
-	document.getElementById("second").value = afternoons;
-	document.getElementById("third").value = fulldays;
-		
-}
+		if (mornings === 0){
+			document.getElementById("firstp").style.display = "none";}
+		else{
+			document.getElementById("firstp").style.display = "block";}
+		if (lunches === 0){
+			document.getElementById("lunchp").style.display = "none";}
+		else{
+			document.getElementById("lunchp").style.display = "block";}
+		if (afternoons === 0){
+			document.getElementById("secondp").style.display = "none";}
+		else{
+			document.getElementById("secondp").style.display = "block";}
+		if (fulldays === 0){
+			document.getElementById("thirdp").style.display = "none";}
+		else{
+			document.getElementById("thirdp").style.display = "block";}
+	}
+
 </script>
 
-<table width="500" border="1">
-
+<table width="750" border="1">
   <tbody>
     <tr>
       <th scope="col">&nbsp;</th>
@@ -136,57 +191,50 @@ function slots(){
     </tr>
     <tr>
       <th scope="row">Monday</th>
-      <td><label><input id="Mon1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
-      <td><label><input id="Mon2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
-      <td><label><input id="Mon3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Mon1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Mon2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Mon3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
     </tr>
     <tr>
       <th scope="row">Tuesday</th>
-      <td><label><input id="Tue1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
-      <td><label><input id="Tue2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
-      <td><label><input id="Tue3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Tue1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Tue2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Tue3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
     </tr>
     <tr>
       <th scope="row">Wednesday</th>
-      <td><label><input id="Wed1" onclick="myFunction(this.id)" type="checkbox"></label></td>
-      <td><label><input id="Wed2" onclick="myFunction(this.id)" type="checkbox"></label></td>
-      <td><label><input id="Wed3" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Wed1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Wed2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Wed3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
     </tr>
     <tr>
       <th scope="row">Thursday</th>
-      <td><label><input id="Thu1" onclick="myFunction(this.id)" type="checkbox"></label></td>
-      <td><label><input id="Thu2" onclick="myFunction(this.id)" type="checkbox"></label></td>
-      <td><label><input id="Thu3" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Thu1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Thu2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Thu3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
     </tr>
     <tr>
       <th scope="row">Friday</th>
-      <td><label><input id="Fri1" onclick="myFunction(this.id)" type="checkbox"></label></td>
-      <td><label><input id="Fri2" onclick="myFunction(this.id)" type="checkbox"></label></td>
-      <td><label><input id="Fri3" onclick="myFunction(this.id)" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Fri1" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Fri2" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
+      <td class="uclkd"><label><input id="Fri3" onclick="myFunction(this.id);slots();add()" type="checkbox"></label></td>
     </tr>
   </tbody>
 </table>
 
-<p>Single Mornings (£30)  : <input id="first" type="number" min="0" max="5" value="0" oninput="add()"> </p>
-<p>Lunches (£5)  : <input id="lunch" type="number" min="0" max="5" value="0" oninput="add()"> </p>
-<p>Single Afternoons (£30): <input id="second" type="number" min="0" max="5" value="0" oninput="add()"></p>
-<br>
-<p>Full Days (£55): <input id="third" type="number" min="0" max="5" value="0" oninput="add()"> </p>
-<br>
+<h3>Summary</h3>
+<p id="firstp" class="sesh"> Mornings (£30): &nbsp;&nbsp;<output id="first"  value="0"></output></p>
+<p id="lunchp" class="sesh"> Lunches (£5): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<output id="lunch" value="0" ></output></p>
+<p id="secondp" class="sesh"> Afternoons (£30): <output id="second" value="0"></output></p>
+<p id="thirdp" class="sesh"> Full Days (£55): &nbsp;&nbsp;<output id="third" value="0"></output></p>
 
-<p>
-  No Funding: <input id="radio0" type="radio" name="fundings" checked="checked" onchange="add()">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  15 Hours Funding: <input id="radio15" type="radio" name="fundings" onchange="add()">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  30 Hours Funding: <input id="radio30" type="radio" name="fundings" onchange="add()">
-</p>
-<h2>Costs</h2>
+
+<h2>Cost to you</h2>
 
 
 
-<p>Weekly = <input id="answer1" value="0"></p>
-<p>Monthly = <input id="answer2" value="0"></p>
+<p>Weekly = £<output id="answer1" value="0"></output></p>
+<p>Monthly = £<output id="answer2" value="0"></output></p>
 	
 
 
