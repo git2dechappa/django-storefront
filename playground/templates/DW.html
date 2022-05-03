@@ -33,9 +33,7 @@
 
 </style>
 	
-	
-
-<body data-new-gr-c-s-check-loaded="8.896.0" data-gr-ext-installed="">
+<body data-new-gr-c-s-check-loaded="8.896.0" data-gr-ext-installed="" onload="slots();add();onstart()">
 <h1>Nursery Fees</h1>
 <h2 id="spw">Sessions per Week</h2>
 <h3>Hello {{ name }}</h3>
@@ -50,9 +48,53 @@
 
 <h3>Which sessions will your child attend each week?</h3>
 <title>DreamWeaver</title>
-	
+<input type="button" onclick="checkAll(this);slots();add();" value="Full Week"></input><br><br>
 <script>
-
+	function checkAll(bx) {
+	const x = document.getElementById("hope");
+	var cbs = x.getElementsByTagName('input');
+	for(var i=0; i < cbs.length; i++) {
+		if(cbs[i].type == 'checkbox') {
+		cbs[i].checked = true
+		}
+		var cell = cbs[i].parentElement.parentElement;
+		if (cbs[i].checked == true)
+			{cell.classList.add("clkd");
+			 cell.classList.remove("uclkd");}
+		else
+			{cell.classList.add("uclkd");
+			 cell.classList.remove("clkd");}
+	}
+	}
+	function clearAll(bx) {
+	const x = document.getElementById("hope");
+	var cbs = x.getElementsByTagName('input');
+	for(var i=0; i < cbs.length; i++) {
+		if(cbs[i].type == 'checkbox') {
+		cbs[i].checked = false
+		}
+		var cell = cbs[i].parentElement.parentElement;
+		if (cbs[i].checked == true)
+			{cell.classList.add("clkd");
+			 cell.classList.remove("uclkd");}
+		else
+			{cell.classList.add("uclkd");
+			 cell.classList.remove("clkd");}
+	}
+	}
+	function onstart() {
+	const x = document.getElementById("hope");
+	var cbs = x.getElementsByTagName('input');
+	for(var i=0; i < cbs.length; i++) {
+		var cell = cbs[i].parentElement.parentElement;
+		if (cbs[i].checked == true)
+			{cell.classList.add("clkd");
+			 cell.classList.remove("uclkd");}
+		else
+			{cell.classList.add("uclkd");
+			 cell.classList.remove("clkd");}
+	}
+	}
 	function myFunction(id) {
 	  var checkBox = document.getElementById(id);
 	  var cell = checkBox.parentElement.parentElement;
@@ -64,7 +106,6 @@
 			{cell.classList.add("uclkd");
 			 cell.classList.remove("clkd");}
 	}
-
 	function add(){
 	  var numOne, numTwo,numThree, numFour,numFive, sum, sum2;
 	  numOne = parseInt(document.getElementById("first").value);
@@ -87,7 +128,6 @@
 	  document.getElementById("answer1").value = sum;
 	  document.getElementById("answer2").value = sum2;
 	}
-
 	function slots(){
 	  var mornings,lunches,afternoons,fulldays;
 		mornings=0;
@@ -178,10 +218,8 @@
 		else{
 			document.getElementById("thirdp").style.display = "block";}
 	}
-
 </script>
-
-<table width="750" border="1">
+<table id="hope" width="750" border="1">
   <tbody>
     <tr>
       <th scope="col">&nbsp;</th>
@@ -221,22 +259,16 @@
     </tr>
   </tbody>
 </table>
-
+<br><input type="button" onclick="clearAll(this);slots();add();" value="Clear choices"></input>
 <h3>Summary</h3>
 <p id="firstp" class="sesh"> Mornings (£30): &nbsp;&nbsp;<output id="first"  value="0"></output></p>
 <p id="lunchp" class="sesh"> Lunches (£5): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<output id="lunch" value="0" ></output></p>
 <p id="secondp" class="sesh"> Afternoons (£30): <output id="second" value="0"></output></p>
 <p id="thirdp" class="sesh"> Full Days (£55): &nbsp;&nbsp;<output id="third" value="0"></output></p>
 
-
 <h2>Cost to you</h2>
-
-
 
 <p>Weekly = £<output id="answer1" value="0"></output></p>
 <p>Monthly = £<output id="answer2" value="0"></output></p>
 	
-
-
-
 </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
